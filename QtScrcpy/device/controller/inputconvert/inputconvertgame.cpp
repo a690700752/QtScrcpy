@@ -71,8 +71,14 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
         return;
     }
 
+    updateSize(frameSize, showSize);
+    // 处理方向盘
+    if (node.type == KeyMap::KMT_STEER_WHEEL) {
+        processSteerWheel(node, from);
+        return;
+    }
+
     if (m_gameMap) {
-        updateSize(frameSize, showSize);
         if (!from || from->isAutoRepeat()) {
             return;
         }
@@ -99,10 +105,6 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
         }
 
         switch (node.type) {
-        // 处理方向盘
-        case KeyMap::KMT_STEER_WHEEL:
-            processSteerWheel(node, from);
-            return;
         // 处理普通按键
         case KeyMap::KMT_CLICK:
             processKeyClick(node.data.click.keyNode.pos, false, node.data.click.switchMap, from);
