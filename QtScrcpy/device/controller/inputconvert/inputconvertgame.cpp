@@ -74,6 +74,10 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
     updateSize(frameSize, showSize);
     // 处理方向盘
     if (node.type == KeyMap::KMT_STEER_WHEEL) {
+        if (!from || from->isAutoRepeat()) {
+            return;
+        }
+
         processSteerWheel(node, from);
         return;
     }
