@@ -1,5 +1,5 @@
-﻿#include <QDebug>
-#include <QCursor>
+﻿#include <QCursor>
+#include <QDebug>
 #include <QGuiApplication>
 #include <QTimer>
 
@@ -49,14 +49,16 @@ void InputConvertGame::wheelEvent(const QWheelEvent *from, const QSize &frameSiz
     }
 }
 
-void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize)
+void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos)
 {
+    updateSize(frameSize, showSize);
     // 处理开关按键
     if (m_keyMap.isSwitchOnKeyboard() && m_keyMap.getSwitchKey() == from->key()) {
         if (QEvent::KeyPress != from->type()) {
             return;
         }
         if (!switchGameMap()) {
+            QCursor::setPos(calcScreenAbsolutePos({ 0.5, 0.5 }).toPoint() + frameGlobalPos);
             m_needBackMouseMove = false;
         }
         return;
@@ -65,13 +67,11 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
     const KeyMap::KeyMapNode &node = m_keyMap.getKeyMapNodeKey(from->key());
     // 处理特殊按键：可以释放出鼠标的按键
     if (m_needBackMouseMove && KeyMap::KMT_CLICK == node.type && node.data.click.switchMap) {
-        updateSize(frameSize, showSize);
         // Qt::Key_Tab Qt::Key_M for PUBG mobile
         processKeyClick(node.data.click.keyNode.pos, false, node.data.click.switchMap, from);
         return;
     }
 
-    updateSize(frameSize, showSize);
     // 处理方向盘
     if (node.type == KeyMap::KMT_STEER_WHEEL) {
         if (!from || from->isAutoRepeat()) {
@@ -126,7 +126,7 @@ void InputConvertGame::keyEvent(const QKeyEvent *from, const QSize &frameSize, c
             break;
         }
     } else {
-        InputConvertNormal::keyEvent(from, frameSize, showSize);
+        InputConvertNormal::keyEvent(from, frameSize, showSize, frameGlobalPos);
     }
 }
 

@@ -189,10 +189,10 @@ void Controller::onWheelEvent(const QWheelEvent *from, const QSize &frameSize, c
     }
 }
 
-void Controller::onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize)
+void Controller::onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos)
 {
     if (m_inputConvert) {
-        m_inputConvert->keyEvent(from, frameSize, showSize);
+        m_inputConvert->keyEvent(from, frameSize, showSize, frameGlobalPos);
     }
 }
 

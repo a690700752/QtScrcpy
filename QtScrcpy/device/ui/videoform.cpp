@@ -631,7 +631,7 @@ void VideoForm::keyPressEvent(QKeyEvent *event)
         emit m_device->switchFullScreen();
     }
 
-    emit m_device->keyEvent(event, m_videoWidget->frameSize(), m_videoWidget->size());
+    emit m_device->keyEvent(event, m_videoWidget->frameSize(), m_videoWidget->size(), mapToGlobal({ 0, 0 }));
 }
 
 void VideoForm::keyReleaseEvent(QKeyEvent *event)
@@ -639,7 +639,7 @@ void VideoForm::keyReleaseEvent(QKeyEvent *event)
     if (!m_device) {
         return;
     }
-    emit m_device->keyEvent(event, m_videoWidget->frameSize(), m_videoWidget->size());
+    emit m_device->keyEvent(event, m_videoWidget->frameSize(), m_videoWidget->size(), pos());
 }
 
 void VideoForm::paintEvent(QPaintEvent *paint)

@@ -32,7 +32,7 @@ protected slots:
     // neend convert frameSize to its frameSize
     void onMouseEvent(const QMouseEvent *from, const QSize &frameSize, const QSize &showSize);
     void onWheelEvent(const QWheelEvent *from, const QSize &frameSize, const QSize &showSize);
-    void onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize);
+    void onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos);
 
 private:
     quint16 getFreePort();

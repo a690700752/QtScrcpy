@@ -259,7 +259,7 @@ void DeviceManage::onWheelEvent(const QWheelEvent *from, const QSize &frameSize,
     }
 }
 
-void DeviceManage::onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize)
+void DeviceManage::onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos)
 {
     Q_UNUSED(frameSize)
     QMapIterator<QString, QPointer<Device>> i(m_devices);
@@ -272,7 +272,7 @@ void DeviceManage::onKeyEvent(const QKeyEvent *from, const QSize &frameSize, con
             continue;
         }
         // neend convert frameSize to its frameSize
-        emit i.value()->keyEvent(from, i.value()->frameSize(), showSize);
+        emit i.value()->keyEvent(from, i.value()->frameSize(), showSize, frameGlobalPos);
     }
 }
 

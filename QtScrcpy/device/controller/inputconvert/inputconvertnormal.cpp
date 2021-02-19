@@ -73,10 +73,11 @@ void InputConvertNormal::wheelEvent(const QWheelEvent *from, const QSize &frameS
     sendControlMsg(controlMsg);
 }
 
-void InputConvertNormal::keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize)
+void InputConvertNormal::keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos)
 {
     Q_UNUSED(frameSize)
     Q_UNUSED(showSize)
+    Q_UNUSED(frameGlobalPos)
     if (!from) {
         return;
     }

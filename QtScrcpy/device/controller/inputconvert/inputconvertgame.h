@@ -16,7 +16,7 @@ public:
 
     virtual void mouseEvent(const QMouseEvent *from, const QSize &frameSize, const QSize &showSize);
     virtual void wheelEvent(const QWheelEvent *from, const QSize &frameSize, const QSize &showSize);
-    virtual void keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize);
+    virtual void keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos);
     virtual bool isCurrentCustomKeymap();
 
     void loadKeyMap(const QString &json);
@@ -72,6 +72,7 @@ private:
     KeyMap m_keyMap;
 
     bool m_processMouseMove = true;
+    QPoint m_mouseGlobalPos;
 
     // steer wheel
     struct

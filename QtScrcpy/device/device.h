@@ -84,7 +84,7 @@ signals:
     // key map
     void mouseEvent(const QMouseEvent *from, const QSize &frameSize, const QSize &showSize);
     void wheelEvent(const QWheelEvent *from, const QSize &frameSize, const QSize &showSize);
-    void keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize);
+    void keyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos);
 
     // self connect signal and slots
     void screenshot();

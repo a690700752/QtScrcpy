@@ -38,7 +38,7 @@ public slots:
     // for input convert
     void onMouseEvent(const QMouseEvent *from, const QSize &frameSize, const QSize &showSize);
     void onWheelEvent(const QWheelEvent *from, const QSize &frameSize, const QSize &showSize);
-    void onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize);
+    void onKeyEvent(const QKeyEvent *from, const QSize &frameSize, const QSize &showSize, const QPoint &frameGlobalPos);
 
     // turn the screen on if it was off, press BACK otherwise
     void onPostBackOrScreenOn();
